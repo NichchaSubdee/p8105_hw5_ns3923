@@ -3,7 +3,58 @@ title: "p8105_hw5_ns3923"
 output: github_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+**Set up necessary library**
+```{r setup, message=FALSE}
+library(tidyverse)
 ```
+
+## Problem 1
+
+**Goal:** To estimate the probability that at least two people share a birthday for group sizes 2–50 using 10,000 simulations each.
+
+**1) Define a function that simulates random birthdays for a group of size n and returns TRUE if any birthdays are shared.**
+
+```{r P1_1}
+set.seed(123)
+
+dup_bday = function(n, days = 365) {
+  birthdays = sample.int(days, size = n, replace = TRUE)
+  any(duplicated(birthdays))
+}
+
+#Check
+test_results =
+  tibble(
+    group_size = c(2, 10, 15, 60),
+    shared_bday = map_lgl(group_size, dup_bday)
+  )
+test_results
+```
+From the checking table above, smaller group sizes such as 2 and 10 people are less likely to have a shared birthday, as shown by `shared_bday = FALSE`. In contrast, larger groups, especially with 60 people, have a higher chance of at least one shared birthday (`shared_bday = TRUE`). This makes sense because the more people in a group, the greater the chance that two will share the same birthday.
+
+**2) Repeat the simulation 10,000 times for each group size between 2 and 50, and calculate the probability of a shared birthday**
+```{r P1_2}
+Repeat_group =
+  expand_grid(group_size = 2:50, iter = 1:10000) |>
+  mutate(dup = map_lgl(group_size, dup_bday)) |>
+  group_by(group_size) |>
+  summarize(prob_duplicate = mean(dup), .groups = "drop")
+```
+
+**3) Make a plot showing the probability as a function of group size**
+
+```{r P1_3}
+Repeat_group |>
+  ggplot(aes(x = group_size, y = prob_duplicate)) +
+  geom_line() +
+  geom_point(size = 2, color = "skyblue") +
+  labs(
+    title = "Problem 1: Probability of at least 2 people shared birthday",
+    x = "Group Size (n)",
+    y = "Probability"
+  ) +
+  theme_minimal()
+```
+
+**Explain:** The trend is upward as the group size increases, meaning that larger groups have a higher probability of two people sharing a birthday. The probability rises and approaches 1 as the group becomes larger. Around 23 people, the chance of a shared birthday is about 50%.
 

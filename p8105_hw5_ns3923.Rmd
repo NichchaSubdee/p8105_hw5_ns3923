@@ -142,5 +142,5 @@ mean_estimates |>
 **Is the average of sample mean across tests for which the null is rejected approximately equal to the true value of μ? Why or why not?**
 **Answer:** Even though the red line (all samples) and the blue line (only when rejecting the null) seem close and look almost identical at higher true means, the average sample mean is not equal to the true mean, especially when the true mean is small. The blue line is clearly higher than the red line, showing that the average of the sample means tends to overestimate the true mean. As a result, their average is slightly higher than the true mean.
 
-
+## 
 

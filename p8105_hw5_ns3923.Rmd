@@ -177,6 +177,8 @@ homicide_summary = homicide_df |>
 homicide_summary
 ```
 
+After creating the new variable `city_state`, there are `r n_distinct(homicide_df$city_state)` different large cities in the dataset, including 50 large cities in different states and the federal district of Washington, DC.
+
 **3) For Baltimore, MD, use the prop.test function to estimate the proportion of homicides that are unsolved, and estimate proportion and confidence intervals**
 
 ```{r P3_Baltimore, warning = FALSE}

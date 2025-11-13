@@ -48,9 +48,9 @@ Repeat_group |>
   ggplot(aes(x = group_size, y = prob_duplicate)) +
   geom_line() +
   geom_point(size = 2, color = "skyblue") +
-  theme_minimal()
+  theme_minimal() +
   labs(
-    title = "Problem 1: Probability of at least 2 people shared birthday",
+    title = "Figure 1: Probability of at least 2 people shared birthday",
     x = "Group Size (n)",
     y = "Probability"
   ) 
@@ -102,7 +102,7 @@ power_df |>
   geom_point(size = 2, color = "skyblue") +
   theme_minimal() +
   labs(
-    title = "Problem 2: Power for One-Sample t-Test (n = 30, σ = 5, α = 0.05)",
+    title = "Figure 2: Power for One-Sample t-Test (n = 30, σ = 5, α = 0.05)",
     x = "True mean (μ)",
     y = "Power of the test"
   ) 
@@ -133,7 +133,7 @@ mean_estimates |>
   geom_point(size = 2) +
   theme_minimal() +
   labs(
-    title = "Problem 2: Average Estimated Mean vs True Mean",
+    title = "Figure 3: Average Estimated Mean vs True Mean",
     x = "True mean (μ)",
     y = "Average of sample mean"
   ) 
@@ -142,5 +142,7 @@ mean_estimates |>
 **Is the average of sample mean across tests for which the null is rejected approximately equal to the true value of μ? Why or why not?**
 **Answer:** Even though the red line (all samples) and the blue line (only when rejecting the null) seem close and look almost identical at higher true means, the average sample mean is not equal to the true mean, especially when the true mean is small. The blue line is clearly higher than the red line, showing that the average of the sample means tends to overestimate the true mean. As a result, their average is slightly higher than the true mean.
 
-## 
+## Problem 3
+
+**Aim:**
 
